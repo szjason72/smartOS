@@ -1,0 +1,117 @@
+spring:
+  application:
+    name: smartos-backend
+  
+  # 数据源配置
+  datasource:
+    url: jdbc:postgresql://localhost:5432/smartos
+    username: smartos
+    password: smartos123
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+  # JPA配置
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        use_sql_comments: true
+
+  # Flyway配置
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    validate-on-migrate: true
+
+  # Redis配置
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: 
+      timeout: 3000ms
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+
+  # Jackson配置
+  jackson:
+    time-zone: Asia/Shanghai
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      write-dates-as-timestamps: false
+
+# 服务器配置
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+    com.smartos: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/smartos.log
+    max-size: 10MB
+    max-history: 30
+
+# Swagger配置
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+
+# 应用配置
+smartos:
+  # 本地化配置
+  local:
+    enabled: true  # 启用本地模拟模式
+    mock-device:
+      enabled: true
+      base-url: http://localhost:8080/mock/bc4
+  
+  # BC4 Pro配置
+  bc4:
+    api:
+      base-url: http://localhost:8080/mock/bc4  # 使用本地Mock API
+      timeout: 10000
+      retry-times: 3
+    light-sensor:
+      collection-interval: 60 # 秒
+      default-open-threshold: 200.0 # lux
+      default-close-threshold: 500.0 # lux
+  
+  # 智能窗帘配置
+  curtain:
+    mqtt:
+      broker-url: tcp://localhost:1883
+      client-id: smartos-curtain-controller
+      username: 
+      password: 
+    control:
+      debounce-seconds: 30
+      check-interval-seconds: 60

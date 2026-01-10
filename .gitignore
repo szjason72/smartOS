@@ -1,0 +1,52 @@
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+
+# Maven
+backend/target/
+backend/.mvn/
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+
+# Database
+*.db
+*.sqlite
+
+# Docker
+docker-compose.override.yml
+
+# Mosquitto
+mosquitto/data/
+mosquitto/log/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# Maven wrapper
+.mvn/wrapper/maven-wrapper.jar
+
+# Frontend build
+frontend/.vite/
+frontend/dist/
+frontend/build/
