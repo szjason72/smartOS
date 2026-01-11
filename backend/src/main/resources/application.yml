@@ -101,7 +101,7 @@ smartos:
       timeout: 10000
       retry-times: 3
     light-sensor:
-      collection-interval: 60 # 秒
+      collection-interval: 3600 # 秒（1小时）
       default-open-threshold: 200.0 # lux
       default-close-threshold: 500.0 # lux
   

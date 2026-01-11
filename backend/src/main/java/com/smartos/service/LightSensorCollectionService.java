@@ -36,14 +36,14 @@ public class LightSensorCollectionService {
     @Value("${smartos.bc4.api.base-url:http://localhost:8080/mock/bc4}")
     private String bc4ApiBaseUrl;
     
-    @Value("${smartos.bc4.light-sensor.collection-interval:60}")
+    @Value("${smartos.bc4.light-sensor.collection-interval:3600}")
     private int collectionInterval;
     
     /**
      * 定时采集光感数据
-     * 默认每60秒采集一次
+     * 默认每1小时采集一次
      */
-    @Scheduled(fixedDelayString = "${smartos.bc4.light-sensor.collection-interval:60}000")
+    @Scheduled(fixedDelayString = "${smartos.bc4.light-sensor.collection-interval:3600}000")
     public void collectLightSensorData() {
         log.debug("开始定时采集光感数据");
         
